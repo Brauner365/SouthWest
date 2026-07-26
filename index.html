@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntech Recruitment — Southwest Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#CC2200;--ink:#1A1A1A;--mid:#444;--sub:#888;
+  --rule:#DDDBD7;--bg:#F7F5F1;--card:#FFFFFF;
+  --green:#1A7A3C;--blue:#1A4A8A;
+  --serif:'IBM Plex Serif',serif;
+  --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace
+}
+html{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.6}
+body{max-width:860px;margin:0 auto;padding:0 0 60px}
+.spine{position:fixed;left:calc(50% - 430px);top:0;width:6px;height:100vh;background:var(--red);z-index:100}
+@media(max-width:900px){.spine{display:none}}
+
+/* NAV */
+.nav{border-bottom:1px solid var(--ink);padding:18px 48px;display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100}
+.nav-brand{font-size:12px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.nav-sub{font-family:var(--mono);font-size:10px;color:var(--sub);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px}
+.nav-badge{border:1.5px solid var(--ink);padding:5px 14px;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:61px;z-index:90;padding:0 48px}
+.tab{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:13px 18px;border:none;background:transparent;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.12s;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
+
+/* HERO */
+.hero{padding:48px 48px 40px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-size:50px;font-weight:700;line-height:0.96;letter-spacing:-1px;margin-bottom:20px}
+.hero h1 em{color:var(--red);font-style:italic;display:block}
+.hero-lead{font-size:15px;font-weight:300;color:var(--mid);line-height:1.85;max-width:600px;margin-bottom:28px}
+.hero-lead strong{font-weight:600;color:var(--ink)}
+.dark-strip{background:var(--ink);padding:20px 24px;margin-bottom:24px}
+.dark-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(247,245,241,0.3);margin-bottom:10px}
+.dark-body{font-size:13px;color:rgba(247,245,241,0.65);line-height:1.8}
+.dark-body strong{color:#F7F5F1;font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);overflow:hidden}
+.stat{padding:18px 20px;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--red);line-height:1;margin-bottom:5px}
+.stat-l{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sub);line-height:1.5}
+
+/* SECTIONS */
+.sec{padding:36px 48px;border-bottom:1px solid var(--rule)}
+.sec:last-of-type{border-bottom:none}
+.slabel{display:flex;align-items:center;margin-bottom:20px}
+.snum{background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 8px;margin-right:10px}
+.stxt{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.sec-intro{font-size:14px;color:var(--mid);line-height:1.8;max-width:620px;margin-bottom:28px}
+.sec-intro strong{font-weight:600;color:var(--ink)}
+
+/* CANDIDATE CARDS */
+.ccard{border:1px solid var(--rule);overflow:hidden;margin-bottom:20px}
+.ccard:last-child{margin-bottom:0}
+.chead{background:var(--ink);padding:18px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.cref{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(247,245,241,0.3);margin-bottom:6px}
+.cname{font-family:var(--serif);font-size:18px;font-weight:600;color:#F7F5F1;margin-bottom:3px}
+.csub{font-size:12px;color:rgba(247,245,241,0.4)}
+.cbadges{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
+.badge{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 9px;white-space:nowrap}
+.badge-ss{background:rgba(204,34,0,0.18);color:#f08070;border:1px solid rgba(204,34,0,0.3)}
+.badge-g{background:rgba(26,122,60,0.18);color:#2d9e5f;border:1px solid rgba(26,122,60,0.3)}
+.badge-b{background:rgba(26,74,138,0.15);color:#4a7fd4;border:1px solid rgba(26,74,138,0.3)}
+.ccols{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--rule)}
+.ccol{padding:18px 20px;border-right:1px solid var(--rule)}
+.ccol:last-child{border-right:none}
+.col-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
+.drow{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #F0EEEA;font-size:12px;gap:8px}
+.drow:last-child{border-bottom:none}
+.dk{color:var(--sub);flex-shrink:0}
+.dv{font-weight:500;color:var(--ink);text-align:right}
+.dv.g{color:var(--green)}
+.dv.r{color:var(--red)}
+.skill{display:flex;align-items:center;justify-content:space-between;padding:6px 9px;background:var(--bg);margin-bottom:4px;font-size:12px;gap:6px}
+.skill:last-child{margin-bottom:0}
+.sb{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;padding:2px 7px;flex-shrink:0}
+.sb-e{background:rgba(26,122,60,0.07);color:var(--green);border:1px solid rgba(26,122,60,0.2)}
+.sb-c{background:rgba(26,74,138,0.07);color:var(--blue);border:1px solid rgba(26,74,138,0.2)}
+.assess{padding:14px 20px;background:var(--bg);border-top:1px solid var(--rule);display:flex;gap:10px;align-items:flex-start}
+.abar{width:2px;min-height:18px;background:var(--red);flex-shrink:0;margin-top:3px}
+.atext{font-size:12px;color:var(--mid);line-height:1.75}
+.atext strong{font-weight:600;color:var(--ink)}
+
+/* 2-COL GRID */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);overflow:hidden}
+.cell{background:var(--card);padding:22px}
+.cell-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
+.citem{font-size:13px;color:var(--mid);padding:3px 0;display:flex;align-items:flex-start;gap:8px}
+.ci-g{color:var(--green);font-weight:700;flex-shrink:0}
+.ci-r{color:var(--red);font-weight:700;flex-shrink:0}
+.citem strong{color:var(--ink);font-weight:600}
+
+/* CONTACT */
+.contact-block{background:var(--ink);padding:28px 36px}
+.contact-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(247,245,241,0.3);margin-bottom:8px}
+.contact-name{font-family:var(--serif);font-size:26px;font-weight:700;color:#F7F5F1;margin-bottom:4px}
+.contact-role{font-size:13px;color:rgba(247,245,241,0.4);margin-bottom:20px}
+.contact-rows{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-row{display:flex;align-items:center;gap:12px}
+.contact-icon{width:30px;height:30px;background:rgba(247,245,241,0.08);border:1px solid rgba(247,245,241,0.12);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--red);flex-shrink:0}
+.contact-val{font-size:13px;font-weight:500;color:#F7F5F1}
+.contact-sub{font-size:11px;color:rgba(247,245,241,0.35);margin-bottom:1px;font-family:var(--mono);letter-spacing:0.5px;text-transform:uppercase}
+.cta{display:block;margin-top:20px;background:var(--red);color:#fff;text-align:center;padding:14px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--ink);padding:16px 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.footer-meta{font-family:var(--mono);font-size:10px;color:var(--sub)}
+
+@media(max-width:760px){
+  .nav,.hero,.sec,.footer{padding-left:20px;padding-right:20px}
+  .tabs{padding:0 20px}
+  .stats,.ccols,.two-col,.contact-rows{grid-template-columns:1fr}
+  .stat,.ccol{border-right:none;border-bottom:1px solid var(--rule)}
+  .stat:last-child,.ccol:last-child{border-bottom:none}
+  .hero h1{font-size:36px}
+  .tab{font-size:9px;padding:11px 12px}
+}
+</style>
+</head>
+<body>
+<div class="spine"></div>
+
+<div class="nav">
+  <div>
+    <div class="nav-brand">Syntech Recruitment</div>
+    <div class="nav-sub">Welding & Fabrication · Ireland</div>
+  </div>
+  <div class="nav-badge">Southwest Engineering · July 2026</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('welders',this)">Welders & Fabricators</button>
+  <button class="tab" onclick="show('pipewelder',this)">Pipe Welders</button>
+  <button class="tab" onclick="show('qs',this)">Quantity Surveyor</button>
+  <button class="tab" onclick="show('why',this)">Why Syntech</button>
+  <button class="tab" onclick="show('contact',this)">Contact</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">For Southwest Engineering · Milltown, Co. Kerry · Welding & Fabrication · Environmental & Structural</div>
+  <h1>We saw your vacancies.<br><em>Here are your people.</em></h1>
+  <p class="hero-lead">Southwest Engineering is recruiting across three roles — welders, pipe welders and a quantity surveyor. Syntech has a dedicated Irish desk and a pipeline of qualified welders, fabricators and commercial professionals across Kerry and Munster right now. <strong>We have more people than we have live vacancies. We'd like to place them with SWE.</strong></p>
+  <div class="dark-strip">
+    <div class="dark-label">The Foynes Engineering connection — why we know this market</div>
+    <div class="dark-body">Syntech has placed welders, fabricators and engineers across Ireland — including with Foynes Engineering and across the Irish structural, water and mechanical sectors. We understand what CE Class 3 accredited operations require from their people. <strong>That is why we are reaching out to Southwest Engineering directly.</strong></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Live roles — welders, pipe welders & QS</div></div>
+    <div class="stat"><div class="stat-n">1B+</div><div class="stat-l">Profiles via SuperSearch</div></div>
+    <div class="stat"><div class="stat-n">20+</div><div class="stat-l">Years welding, fabrication & engineering</div></div>
+    <div class="stat"><div class="stat-n">£0</div><div class="stat-l">Upfront cost — contingent</div></div>
+  </div>
+</div>
+
+<!-- WELDERS -->
+<div id="panel-welders" class="panel active">
+  <div class="sec">
+    <div class="slabel"><span class="snum">01</span><span class="stxt">Experienced Welders & Welder Fabricators</span></div>
+    <p class="sec-intro">Structural welders and welder fabricators across Kerry and Munster — recognised welding qualifications, permanent position ready, immediate to 1 month availability.</p>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-01 · Welder Fabricator</div>
+          <div class="cname">Structural Welder Fabricator — Steel & Stainless</div>
+          <div class="csub">6 years · MIG / MMA · Structural steel & stainless · Kerry / Munster · Immediately available</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-g">Recognised Qualification</span>
+          <span class="badge badge-g">Immediate Start</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">6 years</span></div>
+          <div class="drow"><span class="dk">Qualification</span><span class="dv g">Recognised — active</span></div>
+          <div class="drow"><span class="dk">Current sector</span><span class="dv">Structural fabrication</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">Kerry / Munster</span></div>
+          <div class="drow"><span class="dk">Availability</span><span class="dv g">Immediate</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Welding Competencies</div>
+          <div class="skill"><span style="color:#444">MIG welding — structural steel</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">MMA — heavy fabrication</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Stainless steel fabrication</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Drawing interpretation</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Own initiative — self-managed</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Application Fit</div>
+          <div class="drow"><span class="dk">Welding qualification</span><span class="dv g">Recognised — confirmed</span></div>
+          <div class="drow"><span class="dk">Works on own initiative</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Permanent position</span><span class="dv g">Actively seeking</span></div>
+          <div class="drow"><span class="dk">Immediate start</span><span class="dv g">Available</span></div>
+          <div class="drow"><span class="dk">Team player</span><span class="dv">Confirmed — site history</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">6 years structural fabrication, MIG and MMA, stainless and steel. Recognised welding qualification. Works independently and reads drawings. Kerry-based, immediately available. Looking for permanent. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-02 · Welder Fabricator</div>
+          <div class="cname">Welder Fabricator — Water & Environmental Sector</div>
+          <div class="csub">4 years · Tanks & process fabrication · Mild steel & stainless · South Kerry · 2 weeks notice</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-g">Recognised Qualification</span>
+          <span class="badge badge-b">2 Weeks Notice</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">4 years</span></div>
+          <div class="drow"><span class="dk">Qualification</span><span class="dv g">Recognised — confirmed</span></div>
+          <div class="drow"><span class="dk">Sector experience</span><span class="dv">Water & environmental</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">South Kerry</span></div>
+          <div class="drow"><span class="dk">Notice period</span><span class="dv">2 weeks</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Welding Competencies</div>
+          <div class="skill"><span style="color:#444">MIG welding — tanks & vessels</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Mild steel & stainless fabrication</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Process pipework — water sector</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Drawing reading & interpretation</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Own initiative working</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Application Fit</div>
+          <div class="drow"><span class="dk">Welding qualification</span><span class="dv g">Recognised — confirmed</span></div>
+          <div class="drow"><span class="dk">Water sector background</span><span class="dv g">Direct experience</span></div>
+          <div class="drow"><span class="dk">Permanent position</span><span class="dv g">Actively seeking</span></div>
+          <div class="drow"><span class="dk">Near-immediate start</span><span class="dv g">2 weeks</span></div>
+          <div class="drow"><span class="dk">Own initiative</span><span class="dv g">Confirmed</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">4 years fabricating tanks and process pipework in the water and environmental sector — directly relevant to SWE's core work. Recognised qualification, South Kerry based, 2 weeks notice, looking for permanent. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-03 · Coded Welder</div>
+          <div class="cname">Coded Welder — Stainless & Aluminium</div>
+          <div class="csub">5 years · TIG & MIG · Stainless, mild steel & aluminium · Munster · 1 month notice</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-g">Coded — Active</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">5 years</span></div>
+          <div class="drow"><span class="dk">Coding</span><span class="dv g">Active — current cert</span></div>
+          <div class="drow"><span class="dk">Materials</span><span class="dv">Stainless, mild & aluminium</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">Munster — Kerry commutable</span></div>
+          <div class="drow"><span class="dk">Notice period</span><span class="dv">1 month</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Welding Competencies</div>
+          <div class="skill"><span style="color:#444">TIG welding — stainless & aluminium</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">MIG — mild & stainless steel</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Bespoke & structural fabrication</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Shop drawing interpretation</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Safety tickets — current</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Application Fit</div>
+          <div class="drow"><span class="dk">Welding qualification</span><span class="dv g">Coded — active cert</span></div>
+          <div class="drow"><span class="dk">Aluminium experience</span><span class="dv g">Confirmed — TIG</span></div>
+          <div class="drow"><span class="dk">Permanent position</span><span class="dv g">Actively seeking</span></div>
+          <div class="drow"><span class="dk">Start</span><span class="dv">1 month</span></div>
+          <div class="drow"><span class="dk">Own initiative</span><span class="dv g">Confirmed</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">5 years coded welding across stainless, mild steel and aluminium — all three materials SWE works with. TIG and MIG, bespoke and structural work. Active coding, Munster-based, looking for a permanent step. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PIPE WELDERS -->
+<div id="panel-pipewelder" class="panel">
+  <div class="sec">
+    <div class="slabel"><span class="snum">02</span><span class="stxt">Experienced Pipe Welders — Kerry · Travel within Ireland</span></div>
+    <p class="sec-intro">Pipe welders with production welding experience and the ability to read and interpret shop drawings. Kerry-based with willingness to travel across Ireland as required.</p>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-04 · Pipe Welder</div>
+          <div class="cname">Coded Pipe Welder — Production & Site</div>
+          <div class="csub">5+ years · TIG & MIG · Production welding · Shop drawings · Kerry / Munster · Immediately available</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-g">Coded — Active</span>
+          <span class="badge badge-g">Travel — Ireland</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">5+ years</span></div>
+          <div class="drow"><span class="dk">Coding</span><span class="dv g">Active — current cert</span></div>
+          <div class="drow"><span class="dk">Environment</span><span class="dv">Production & site-based</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">Kerry — travel willing</span></div>
+          <div class="drow"><span class="dk">Availability</span><span class="dv g">Immediate</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Competencies</div>
+          <div class="skill"><span style="color:#444">Production welding — fast-paced</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">TIG pipe welding — stainless</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">MIG pipe welding — carbon steel</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Shop drawing reading</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Ireland travel — site work</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Application Fit</div>
+          <div class="drow"><span class="dk">Production welding</span><span class="dv g">Fast-paced — confirmed</span></div>
+          <div class="drow"><span class="dk">Shop drawing reading</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Kerry based</span><span class="dv g">Yes — commutable</span></div>
+          <div class="drow"><span class="dk">Travel within Ireland</span><span class="dv g">Willing</span></div>
+          <div class="drow"><span class="dk">Permanent</span><span class="dv g">Actively seeking</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">5+ years coded pipe welding in production and site environments. TIG on stainless, MIG on carbon steel. Comfortable in fast-paced production, reads shop drawings, willing to travel across Ireland. Kerry-based, immediately available, looking for permanent. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-05 · Pipe Welder</div>
+          <div class="cname">Pipe Welder — Water & Wastewater Mechanical Installation</div>
+          <div class="csub">4 years · Pipework & mechanical installation · Water sector · Munster · 2 weeks notice</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-b">2 Weeks Notice</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">4 years</span></div>
+          <div class="drow"><span class="dk">Sector</span><span class="dv">Water & wastewater — direct</span></div>
+          <div class="drow"><span class="dk">Focus</span><span class="dv">Pipe welding & mech install</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">Munster — Kerry commutable</span></div>
+          <div class="drow"><span class="dk">Notice</span><span class="dv">2 weeks</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Competencies</div>
+          <div class="skill"><span style="color:#444">Pipe welding — stainless & carbon</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Mechanical installation — water plants</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Shop drawing interpretation</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Site-based — own initiative</span><span class="sb sb-c">Confirmed</span></div>
+          <div class="skill"><span style="color:#444">Ireland travel — site</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Application Fit</div>
+          <div class="drow"><span class="dk">Water sector background</span><span class="dv g">Direct — confirmed</span></div>
+          <div class="drow"><span class="dk">Mech installation</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Shop drawings</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Travel within Ireland</span><span class="dv g">Willing</span></div>
+          <div class="drow"><span class="dk">Permanent</span><span class="dv g">Actively seeking</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">4 years pipe welding and mechanical installation specifically in the water and wastewater sector — directly aligned with SWE's mechanical installation scope. Reads shop drawings, site-based, travel-willing across Ireland. 2 weeks notice, permanent sought. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QS -->
+<div id="panel-qs" class="panel">
+  <div class="sec">
+    <div class="slabel"><span class="snum">03</span><span class="stxt">Junior Quantity Surveyor</span></div>
+    <p class="sec-intro">Degree-qualified QS candidates with AutoCAD or similar software experience and a fabrication or contractor background. Budget management, tendering, procurement and site cost control.</p>
+
+    <div class="ccard">
+      <div class="chead">
+        <div>
+          <div class="cref">SYN-SWE-06 · Junior Quantity Surveyor</div>
+          <div class="cname">Junior Quantity Surveyor — Fabrication & Structural</div>
+          <div class="csub">Degree qualified · AutoCAD · Fabrication background · Kerry / Munster · Available</div>
+        </div>
+        <div class="cbadges">
+          <span class="badge badge-ss">Syntech Registered</span>
+          <span class="badge badge-b">Degree Qualified</span>
+        </div>
+      </div>
+      <div class="ccols">
+        <div class="ccol">
+          <div class="col-label">Background</div>
+          <div class="drow"><span class="dk">Qualification</span><span class="dv g">QS Degree</span></div>
+          <div class="drow"><span class="dk">Experience</span><span class="dv">2 years</span></div>
+          <div class="drow"><span class="dk">Sector background</span><span class="dv">Fabrication / engineering</span></div>
+          <div class="drow"><span class="dk">Location</span><span class="dv">Kerry / Munster</span></div>
+          <div class="drow"><span class="dk">Right to work</span><span class="dv g">Ireland — unrestricted</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">Software</div>
+          <div class="skill"><span style="color:#444">AutoCAD</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Microsoft Office — Excel / Word</span><span class="sb sb-e">Expert</span></div>
+          <div class="skill"><span style="color:#444">Solidworks / Revit</span><span class="sb sb-c">Developing</span></div>
+          <div class="skill"><span style="color:#444">Cost reporting software</span><span class="sb sb-c">Confirmed</span></div>
+        </div>
+        <div class="ccol">
+          <div class="col-label">QS Competencies</div>
+          <div class="drow"><span class="dk">Tendering & procurement</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Budget management</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Variations & valuations</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Drawing interpretation</span><span class="dv g">Confirmed</span></div>
+          <div class="drow"><span class="dk">Reporting deadlines</span><span class="dv">Strong — confirmed</span></div>
+        </div>
+      </div>
+      <div class="assess">
+        <div class="abar"></div>
+        <div class="atext">Degree-qualified QS with 2 years' experience in a fabrication and engineering consultancy environment. AutoCAD proficient, familiar with tendering, procurement, variations, valuations and cost reporting. Comfortable reading and interpreting engineering drawings. Kerry / Munster based. <strong>Full CV on engagement.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY SYNTECH -->
+<div id="panel-why" class="panel">
+  <div class="sec">
+    <div class="slabel"><span class="snum">04</span><span class="stxt">Why Syntech</span></div>
+    <p class="sec-intro">Syntech is a specialist engineering and technical recruitment business with over 20 years of experience placing people across the UK and Ireland. We have a dedicated Irish desk covering Ireland directly.</p>
+    <div class="two-col" style="margin-bottom:20px">
+      <div class="cell">
+        <div class="cell-label">What you get</div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>Contingent</strong> — no placement, no fee</span></div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>3-month replacement</strong> guarantee on every placement</span></div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>72-hour turnaround</strong> from brief to shortlist</span></div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>Dedicated Irish desk</strong> — Syntech covers Ireland directly</span></div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>Qualifications confirmed</strong> before any CV is submitted</span></div>
+        <div class="citem"><span class="ci-g">✓</span><span><strong>Foynes Engineering connection</strong> — we know the Irish market</span></div>
+      </div>
+      <div class="cell">
+        <div class="cell-label">Why candidates choose Southwest Engineering</div>
+        <div class="citem"><span class="ci-r">→</span><span>CE Class 3 accredited — quality, specialist operation</span></div>
+        <div class="citem"><span class="ci-r">→</span><span>Long-established family business — permanent, stable work</span></div>
+        <div class="citem"><span class="ci-r">→</span><span>Varied projects — bridges, tanks, water treatment, structural</span></div>
+        <div class="citem"><span class="ci-r">→</span><span>Significant operations nationwide — project variety and travel</span></div>
+        <div class="citem"><span class="ci-r">→</span><span>Kerry base — 20 minutes from Tralee and Killarney</span></div>
+        <div class="citem"><span class="ci-r">→</span><span>€35k–€50k — competitive, permanent positions</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="panel-contact" class="panel">
+  <div class="sec">
+    <div class="slabel"><span class="snum">05</span><span class="stxt">Brief Us — Shortlist Back Within 72 Hours</span></div>
+    <p class="sec-intro">All five candidate profiles above have been pre-identified for Southwest Engineering's live roles. Brief Syntech and a considered shortlist is back with you within 72 hours.</p>
+    <div class="contact-block">
+      <div class="contact-label">Your direct contact</div>
+      <div class="contact-name">Steve Brauner</div>
+      <div class="contact-role">Director — Syntech Recruitment</div>
+      <div class="contact-rows">
+        <div class="contact-row">
+          <div class="contact-icon">@</div>
+          <div>
+            <div class="contact-sub">Email</div>
+            <div class="contact-val">stephen@syntechrecruitment.co.uk</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">T</div>
+          <div>
+            <div class="contact-sub">Phone</div>
+            <div class="contact-val">01276 405 870</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">W</div>
+          <div>
+            <div class="contact-sub">Website</div>
+            <div class="contact-val">syntechrecruitment.co.uk</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">IE</div>
+          <div>
+            <div class="contact-sub">Irish Desk</div>
+            <div class="contact-val">Ireland covered directly — dedicated team</div>
+          </div>
+        </div>
+      </div>
+      <a href="mailto:stephen@syntechrecruitment.co.uk?subject=Southwest Engineering — Let's talk" class="cta">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Syntech Recruitment · Southwest Engineering</div>
+  <div class="footer-meta">stephen@syntechrecruitment.co.uk · 01276 405 870</div>
+  <div class="footer-meta">Welding & Fabrication · Kerry · Ireland</div>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
